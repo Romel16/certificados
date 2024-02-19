@@ -28,19 +28,18 @@ $(document).ready(function(){
             ctx.fillText(data.cursoNombre, x, 320);
 
             ctx.font = '18px Arial';
-            ctx.fillText(data.instructorNombre+' '+ data.instructorApellidoPaterno+' '+data.instructorApellidoMaterno, x, 420);
+            ctx.fillText(data.instructorNombre+' '+ data.instructorApellidoPaterno+' '+data.instructorApellidoMaterno, x, 400);
             ctx.font = '15px Arial';
-            ctx.fillText('Instructor', x, 450);
+            ctx.fillText('Instructor', x, 420);
 
             ctx.font = '15px Arial';
-            ctx.fillText('Fecha de Inicio : '+data.cursoFechaInicio+' / '+'Fecha de Finalización : '+data.cursoFechaFin+'', x, 490);
+            ctx.fillText('Fecha de Inicio : '+data.cursoFechaInicio+' / '+'Fecha de Finalización : '+data.cursoFechaFin+'', x, 590);
 
             /* Ruta de la Imagen */
-            imageqr.src = "../../public/qr"+detallecursoId+".png";
-            imageqr.src = "../../public/qr"+detallecursoId+".jpg";
+            imageqr.src = "../../public/qr/"+data.detallecursoId+".png";
             /* Dimensionamos y seleccionamos imagen */
             imageqr.onload = function() {
-                ctx.drawImage(imageqr, 400, 500, 100, 100);
+                ctx.drawImage(imageqr, 400, 450, 100, 100);
             } 
             $('#cur_descrip').html(data.cursoDescripcion);
 

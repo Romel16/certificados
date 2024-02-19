@@ -199,12 +199,16 @@ function registrardetalle(){
 
                 data.forEach(e => {
                     e.forEach(i => {
+                        
                         /* console.log(i['detallecursoId']); */
                         $.ajax({
                             type: "POST",
                             url: "../../controllers/cursoControllers.php?op=generar_qr",
                             data: {detallecursoId : i['detallecursoId']},
-                            dataType: "json"
+                            dataType: "json",
+                            success: function(data) {
+                                console.log("exito");
+                            }
                         });
                     });
                 });
