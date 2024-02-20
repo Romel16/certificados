@@ -34,7 +34,7 @@ $(document).on("click","#btnconsultar", function(){
                     "ajax":{
                         url:"../../controllers/usuarioControllers.php?op=listar_cursos",
                         type:"post",
-                        data:{usuarioId:data.usu_id},
+                        data:{usuarioId:data.usuarioId},
                     },
                     "bDestroy": true,
                     "responsive": true,

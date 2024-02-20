@@ -51,7 +51,7 @@
                 usuario.usuarioNombre,
                 usuario.usuarioApellidoPaterno,
                 usuario.usuarioApellidoMaterno,
-                /* usuario.usuarioDni, */
+                usuario.usuarioDni, 
                 instructor.instructorId,
                 instructor.instructorNombre,
                 instructor.instructorApellidoPaterno,
@@ -83,7 +83,7 @@
                 usuario.usuarioNombre,
                 usuario.usuarioApellidoPaterno,
                 usuario.usuarioApellidoMaterno,
-                /*usuario.usuarioDni, */
+                usuario.usuarioDni, 
                 instructor.instructorId,
                 instructor.instructorNombre,
                 instructor.instructorApellidoPaterno,
@@ -116,7 +116,7 @@
                 usuario.usuarioNombre,
                 usuario.usuarioApellidoPaterno,
                 usuario.usuarioApellidoMaterno,
-                /* usuario.usuarioDni, */
+                usuario.usuarioDni, 
                 instructor.instructorId,
                 instructor.instructorNombre,
                 instructor.instructorApellidoPaterno,
@@ -226,10 +226,10 @@
         }
 
         /*TODO: Funcion para insertar usuario */
-        public function insert_usuario($usuarioNombre,$usuarioApellidoPaterno,$usuarioApellidoMaterno,$usuarioCorreo,$usuarioPassword,$usuarioSexo,$usuarioTelefono,$usuarioRolId/* ,$usuarioDni */){
+        public function insert_usuario($usuarioNombre,$usuarioApellidoPaterno,$usuarioApellidoMaterno,$usuarioCorreo,$usuarioPassword,$usuarioSexo,$usuarioTelefono,$usuarioRolId ,$usuarioDni ){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO usuario (usuarioId,usuarioNombre,usuarioApellidoPaterno,usuarioApellidoMaterno,usuarioCorreo,usuarioPassword,usuarioSexo,usuarioTelefono,usuarioRolId/* usuarioDni */,usuarioFechaCreacion, usuarioEstado) VALUES (NULL,?,?,?,?,?,?,?,?,now(),'1');";
+            $sql="INSERT INTO usuario (usuarioId,usuarioNombre,usuarioApellidoPaterno,usuarioApellidoMaterno,usuarioCorreo,usuarioPassword,usuarioSexo,usuarioTelefono,usuarioRolId, usuarioDni,usuarioFechaCreacion, usuarioEstado) VALUES (NULL,?,?,?,?,?,?,?,?,?,now(),'1');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usuarioNombre);
             $sql->bindValue(2, $usuarioApellidoPaterno);
@@ -239,13 +239,13 @@
             $sql->bindValue(6, $usuarioSexo);
             $sql->bindValue(7, $usuarioTelefono);
             $sql->bindValue(8, $usuarioRolId);
-           /*  $sql->bindValue(9, $usuarioDni); */
+            $sql->bindValue(9, $usuarioDni); 
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
         /*TODO: Funcion para actualizar usuario */
-        public function update_usuario($usuarioId,$usuarioNombre,$usuarioApellidoPaterno,$usuarioApellidoMaterno,$usuarioCorreo,$usuarioPassword,$usuarioSexo,$usuarioTelefono,$usuarioRolId/* ,$usuarioDni */){
+        public function update_usuario($usuarioId,$usuarioNombre,$usuarioApellidoPaterno,$usuarioApellidoMaterno,$usuarioCorreo,$usuarioPassword,$usuarioSexo,$usuarioTelefono,$usuarioRolId ,$usuarioDni){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE usuario
@@ -257,8 +257,8 @@
                     usuarioPassword = ?,
                     usuarioSexo = ?,
                     usuarioTelefono = ?,
-                    usuarioRolId = ?/* ,
-                    usuarioDni = ? */
+                    usuarioRolId = ? ,
+                    usuarioDni = ? 
                 WHERE
                     usuarioId = ?";
             $sql=$conectar->prepare($sql);
@@ -270,7 +270,7 @@
             $sql->bindValue(6, $usuarioSexo);
             $sql->bindValue(7, $usuarioTelefono);
             $sql->bindValue(8, $usuarioRolId);
-            /* $sql->bindValue(9, $usuarioDni); */
+            $sql->bindValue(9, $usuarioDni); 
             $sql->bindValue(9, $usuarioId);
             $sql->execute();
             return $resultado=$sql->fetchAll();

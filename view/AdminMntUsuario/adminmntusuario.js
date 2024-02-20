@@ -99,7 +99,7 @@ function editar(usu_id){
         $('#usuarioSexo').val(data.usuarioSexo).trigger('change');
         $('#usuarioRolId').val(data.usuarioRolId).trigger('change');
         $('#usuarioTelefono').val(data.usuarioTelefono);
-        /* $('#usuarioDni').val(data.usuarioDni); */
+        $('#usuarioDni').val(data.usuarioDni); 
     });
     $('#lbltitulo').html('Editar Registro');
     $('#modalmantenimiento').modal('show');
@@ -171,8 +171,8 @@ var ExcelToJSON = function() {
                         usuarioPassword : columns[4],
                         usuarioSexo : columns[5],
                         usuarioTelefono :columns[6],
-                        usuarioRolId : columns[7]/* ,
-                        usuarioDni :columns[8] */
+                        usuarioRolId : columns[7] ,
+                        usuarioDni :columns[8] 
                     }, function (data) {
                         console.log(data);
                     });

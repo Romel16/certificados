@@ -105,7 +105,7 @@
                     $output["usuarioPassword"] = $row["usuarioPassword"];
                     $output["usuarioTelefono"] = $row["usuarioTelefono"];
                     $output["usuarioRolId"] = $row["usuarioRolId"];
-                    /* $output["usuarioDni"] = $row["usuarioDni"]; */
+                    $output["usuarioDni"] = $row["usuarioDni"]; 
                 }
                 echo json_encode($output);
             }
@@ -144,9 +144,9 @@
         /*TODO: Guardar y editar cuando se tenga el ID */
         case "guardaryeditar":
             if(empty($_POST["usuarioId"])){
-                $usuario->insert_usuario($_POST["usuarioNombre"],$_POST["usuarioApellidoPaterno"],$_POST["usuarioApellidoMaterno"],$_POST["usuarioCorreo"],$_POST["usuarioPassword"],$_POST["usuarioSexo"],$_POST["usuarioTelefono"],$_POST["usuarioRolId"]/* ,$_POST["usuarioDni"] */);
+                $usuario->insert_usuario($_POST["usuarioNombre"],$_POST["usuarioApellidoPaterno"],$_POST["usuarioApellidoMaterno"],$_POST["usuarioCorreo"],$_POST["usuarioPassword"],$_POST["usuarioSexo"],$_POST["usuarioTelefono"],$_POST["usuarioRolId"],$_POST["usuarioDni"]);
             }else{
-                $usuario->update_usuario($_POST["usuarioId"],$_POST["usuarioNombre"],$_POST["usuarioApellidoPaterno"],$_POST["usuarioApellidoMaterno"],$_POST["usuarioCorreo"],$_POST["usuarioPassword"],$_POST["usuarioSexo"],$_POST["usuarioTelefono"],$_POST["usuarioRolId"]/* ,$_POST["usuarioDni"] */);
+                $usuario->update_usuario($_POST["usuarioId"],$_POST["usuarioNombre"],$_POST["usuarioApellidoPaterno"],$_POST["usuarioApellidoMaterno"],$_POST["usuarioCorreo"],$_POST["usuarioPassword"],$_POST["usuarioSexo"],$_POST["usuarioTelefono"],$_POST["usuarioRolId"],$_POST["usuarioDni"] );
             }
             break;
         /*TODO: Eliminar segun ID */
@@ -227,7 +227,7 @@
             break;
 
         case "guardar_desde_excel":
-            $usuario->insert_usuario($_POST["usuarioNombre"],$_POST["usuarioApellidoPaterno"],$_POST["usuarioApellidoMaterno"],$_POST["usuarioCorreo"],$_POST["usuarioPassword"],$_POST["usuarioSexo"],$_POST["usuarioTelefono"],$_POST["usuarioRolId"]/* ,$_POST["usuarioDni"] */);
+            $usuario->insert_usuario($_POST["usuarioNombre"],$_POST["usuarioApellidoPaterno"],$_POST["usuarioApellidoMaterno"],$_POST["usuarioCorreo"],$_POST["usuarioPassword"],$_POST["usuarioSexo"],$_POST["usuarioTelefono"],$_POST["usuarioRolId"] ,$_POST["usuarioDni"] );
             break;
 
     }

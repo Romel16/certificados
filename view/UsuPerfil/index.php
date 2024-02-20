@@ -38,37 +38,37 @@
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Nombre: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="usu_nom" id="usu_nom" placeholder="Nombre" required>
+                  <input class="form-control" type="text" name="usuarioNombre" id="usuarioNombre" placeholder="Nombre" required>
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Apellido Paterno: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="usu_apep" id="usu_apep" placeholder="Apellido Paterno">
+                  <input class="form-control" type="text" name="usuarioApellidoPaterno" id="usuarioApellidoPaterno" placeholder="Apellido Paterno">
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Apellido Materno: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="usu_apem" id="usu_apem" placeholder="Apellido Materno">
+                  <input class="form-control" type="text" name="usuarioApellidoMaterno" id="usuarioApellidoMaterno" placeholder="Apellido Materno">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label">Correo Electronico: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="usu_correo" id="usu_correo" readonly>
+                  <input class="form-control" type="text" name="usuarioCorreo" id="usuarioCorreo" readonly>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label">Contraseña: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="usu_pass" id="usu_pass" placeholder="Ingrese Contraseña">
+                  <input class="form-control" type="text" name="usuarioPassword" id="usuarioPassword" placeholder="Ingrese Contraseña">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Sexo: <span class="tx-danger">*</span></label>
-                  <select class="form-control select2" name="usu_sex" id="usu_sex" data-placeholder="Seleccione">
+                  <select class="form-control select2" name="usuarioSexo" id="usuarioSexo" data-placeholder="Seleccione">
                     <option label="Seleccione"></option>
                     <option value="F">Femenino</option>
                     <option value="M">Masculino</option>
@@ -78,7 +78,7 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label">Telefono: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="number" name="usu_telf" id="usu_telf" placeholder="Ingrese Telefono">
+                  <input class="form-control" type="number" name="usuarioTelefono" id="usuarioTelefono" placeholder="Ingrese Telefono">
                 </div>
               </div>
             </div>
