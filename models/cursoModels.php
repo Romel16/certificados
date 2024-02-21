@@ -4,14 +4,14 @@
         public function insert_curso($cursoCategoriaId,$cursoNombre,$cursoDescripcion,$cursoFechaInicio,$cursoFechaFin,$cursoInstructorId){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO curso (cursoId, cursoCategoriaId, cursoNombre, cursoDescripcion, cursoFechaInicio, cursoFechaFin, cursoInstructorId,cursoImagen, cursoFechaCreacion, cursoEstado) VALUES (NULL,?,?,?,?,?,?,'../../public/1.png', now(),'1');";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $cursoCategoriaId);
-            $sql->bindValue(2, $cursoNombre);
-            $sql->bindValue(3, $cursoDescripcion);
-            $sql->bindValue(4, $cursoFechaInicio);
-            $sql->bindValue(5, $cursoFechaFin);
-            $sql->bindValue(6, $cursoInstructorId);
+            $sql = "CALL insert_curso(?, ?, ?, ?, ?, ?)";
+            $sql = $conectar->prepare($sql);
+            $sql->bindParam(1, $cursoCategoriaId, PDO::PARAM_INT);
+            $sql->bindParam(2, $cursoNombre, PDO::PARAM_STR);
+            $sql->bindParam(3, $cursoDescripcion, PDO::PARAM_STR);
+            $sql->bindParam(4, $cursoFechaInicio, PDO::PARAM_STR);
+            $sql->bindParam(5, $cursoFechaFin, PDO::PARAM_STR);
+            $sql->bindParam(6, $cursoInstructorId, PDO::PARAM_INT);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -19,38 +19,26 @@
         public function update_curso($cursoId,$cursoCategoriaId,$cursoNombre,$cursoDescripcion,$cursoFechaInicio,$cursoFechaFin,$cursoInstructorId){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE curso
-                SET
-                    cursoCategoriaId =?,
-                    cursoNombre = ?,
-                    cursoDescripcion = ?,
-                    cursoFechaInicio = ?,
-                    cursoFechaFin = ?,
-                    cursoInstructorId = ?
-                WHERE
-                    cursoId = ?";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $cursoCategoriaId);
-            $sql->bindValue(2, $cursoNombre);
-            $sql->bindValue(3, $cursoDescripcion);
-            $sql->bindValue(4, $cursoFechaInicio);
-            $sql->bindValue(5, $cursoFechaFin);
-            $sql->bindValue(6, $cursoInstructorId);
-            $sql->bindValue(7, $cursoId);
+            $sql = "CALL update_curso(?, ?, ?, ?, ?, ?, ?)";
+            $sql = $conectar->prepare($sql);
+            $sql->bindParam(1, $cursoId, PDO::PARAM_INT);
+            $sql->bindParam(2, $cursoCategoriaId, PDO::PARAM_INT);
+            $sql->bindParam(3, $cursoNombre, PDO::PARAM_STR);
+            $sql->bindParam(4, $cursoDescripcion, PDO::PARAM_STR);
+            $sql->bindParam(5, $cursoFechaInicio, PDO::PARAM_STR);
+            $sql->bindParam(6, $cursoFechaFin, PDO::PARAM_STR);
+            $sql->bindParam(7, $cursoInstructorId, PDO::PARAM_INT);
             $sql->execute();
+
             return $resultado=$sql->fetchAll();
         }
 
         public function delete_curso($cursoId){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE curso
-                SET
-                    cursoEstado = 0
-                WHERE
-                    cursoId = ?";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $cursoId);
+            $sql = "CALL delete_curso(?)";
+            $sql = $conectar->prepare($sql);
+            $sql->bindParam(1, $cursoId, PDO::PARAM_INT);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -58,69 +46,46 @@
         public function get_curso(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT
-                curso.cursoId,
-                curso.cursoNombre,
-                curso.cursoDescripcion,
-                curso.cursoFechaInicio,
-                curso.cursoFechaFin,
-                curso.cursoCategoriaId,
-                curso.cursoImagen,
-                categoria.categoriaNombre,
-                curso.cursoInstructorId,
-                instructor.instructorNombre,
-                instructor.instructorApellidoPaterno,
-                instructor.instructorApellidoMaterno,
-                instructor.instructorCorreo,
-                instructor.instructorSexo,
-                instructor.instructorTelefono
-                FROM curso
-                INNER JOIN categoria on curso.cursoCategoriaId = categoria.categoriaId
-                INNER JOIN instructor on curso.cursoInstructorId = instructor.instructorId
-                WHERE curso.cursoEstado = 1";
+            $sql = "CALL get_curso()";
             $sql=$conectar->prepare($sql);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function get_curso_id($cursoId){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM curso WHERE cursoEstado = 1 AND cursoId = ?";
+            $sql = "CALL get_curso_id(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $cursoId);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
+            $sql->execute();    
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function delete_curso_usuario($detallecursoId){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE detallecurso
-                SET
-                    detallecursoEstado = 0
-                WHERE
-                    detallecursoId = ?";
+            $sql = "CALL delete_curso_usuario(?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $detallecursoId);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
         /*TODO: Insert Curso por Usuario */
-        public function insert_curso_usuario($cursoId,$usu_id){
-            $conectar= parent::conexion();
+        public function insert_curso_usuario($cursoId, $usu_id) {
+            $conectar = parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO detallecurso (detallecursoId,detallecursoCursoId,detallecursoUsuarioId,detallecursoFechaCreacion,detallecursoEstado) VALUES (NULL,?,?,now(),1);";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $cursoId);
-            $sql->bindValue(2, $usu_id);
+        
+            $sql = "CALL insert_curso_usuario(?, ?)";
+            $sql = $conectar->prepare($sql);
+            $sql->bindParam(1, $cursoId, PDO::PARAM_INT);
+            $sql->bindParam(2, $usu_id, PDO::PARAM_INT);
             $sql->execute();
-
-            $sql1="select last_insert_id() as 'detallecursoId'";
-            $sql1=$conectar->prepare($sql1);
-            $sql1->execute();
-            return $resultado=$sql1->fetch(pdo::FETCH_ASSOC);
+        
+            return $resultado = $sql->fetch(PDO::FETCH_ASSOC);
+        
+        
         }
 
         public function update_imagen_curso($cursoId,$cursoImagen){
@@ -134,16 +99,12 @@
                 $cursoImagen = $curx->upload_file();
             }
 
-            $sql="UPDATE curso
-                SET
-                    cursoImagen = ?
-                WHERE
-                    cursoId = ?";
+            $sql = "CALL update_imagen_curso(?, ?)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $cursoImagen);
-            $sql->bindValue(2, $cursoId);
+            $sql->bindValue(1, $cursoId);
+            $sql->bindValue(2, $cursoImagen);
             $sql->execute();
-            return $resultado=$sql->fetchAll();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function upload_file(){

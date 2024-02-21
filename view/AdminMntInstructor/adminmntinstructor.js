@@ -20,7 +20,7 @@ function guardaryeditar(e){
 
             $('#instructor_data').DataTable().ajax.reload();
             $('#modalmantenimiento').modal('hide');
-
+            console.log(data);
             Swal.fire({
                 title: 'Correcto!',
                 text: 'Se Registro Correctamente',
